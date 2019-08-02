@@ -1,0 +1,197 @@
+/* This is the stylesheet used on my website 'alexandertoop.com' */
+
+/* ------------------------- Classes ------------------------- */
+
+.navbar-nav > li {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.navbar {
+    background-color: #595959 !important;
+}
+
+.navbar .navbar-collapse {
+    text-align: center;
+}
+
+
+body {
+    /* Font can be aquired from Google Fonts */
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    background-color: #f6f6f6;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:link, a:visited {
+    color: blue;
+}
+
+a:hover {
+    color: red;
+}
+
+.img2 {
+    width: 92%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 12px;
+}
+
+
+h1 {
+    font-size: 40px;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+h2 {
+    font-size: 24px;
+    padding-top: 14px;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+h3 {
+    font-size: 18px;
+}
+
+.padding-left-200 {
+    padding-left: 170px;
+}
+
+.img3 {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    padding-bottom: 10px;
+}
+
+.container {
+    /*position: fixed;*/
+}
+
+.body {
+    padding-top: 70px;
+    padding-bottom: 15px;
+}
+
+.icons {
+    display: inline-block;
+    width: 100%;
+}
+
+.justify {
+    text-align: justify !important;
+}
+
+.img1 {
+    max-width: 100%;
+    height: auto;
+    text-align: center;
+}
+
+.img4 {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+    padding-bottom: 25px;
+}
+
+.github-widget {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.linkedin-widget {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 5%;
+}
+
+
+/* ------------------------- ids ------------------------- */
+
+#wrapper {
+    width: 768px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+#footer {
+    background-color: #595959;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    color: white;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    text-align: justify;
+}
+
+#header {
+    color: black;
+    text-align: center;
+    padding-top: 80px;
+}
+
+#embedded_pdf {
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+#centered_text {
+    text-align: center;
+}
+
+
+/* ------------------------- media queries ------------------------- */
+
+@media only screen and (device-width: 830px), only screen and (max-width: 830px) {
+    #wrapper {
+        width: 92%;
+    }
+
+    body {
+        /* Font can be aquired from Google Fonts */
+        font-family: 'Open Sans', sans-serif;
+        font-size: 15px;
+        /* Light grey background */
+        background-color: #f6f6f6;
+    }
+
+    .img1 {
+        width: 99%;
+        height: auto;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 20px;
+    }
+
+    .img4 {
+        width: 99%;
+        height: auto;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 20px;
+    }
+
+    .padding-left-200 {
+        padding-left: 0px;
+    }
+}
