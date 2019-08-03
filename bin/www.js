@@ -102,70 +102,68 @@
 //     debug('Listening on ' + bind);
 // }
 
-'use strict';
+'use strict'
 
-var https = require('https');
-var http = require('http');
-var path = require('path');
-var port = 443;
-var insecurePort = 80;
-var fs = require('fs');
-var checkip = require('check-ip-address');
-var server;
-var insecureServer;
-var options;
-var certsPath = path.join('/etc/letsencrypt/live/www.alextoop.com/');
-var caCertsPath = path.join('/etc/letsencrypt/live/www.alextoop.com/');
-var IS_PRODUCTION = false;
+var https = require('https')
+var http = require('http')
+var path = require('path')
+var port = 443
+var insecurePort = 80
+var fs = require('fs')
+var checkip = require('check-ip-address')
+var server
+var insecureServer
+var options
+var certsPath = path.join('/etc/letsencrypt/live/www.alextoop.com/')
+var caCertsPath = path.join('/etc/letsencrypt/live/www.alextoop.com/')
+var IS_PRODUCTION = false
 
-
-insecureServer = http.createServer();
+insecureServer = http.createServer()
 
 insecureServer.on('request', function (req, res) {
-    res.setHeader('Location', 'https://' + req.headers.host.replace(/:\d+/, ':' + port) + req.url);
-    res.statusCode = 302;
-    res.end();
-});
+  res.setHeader('Location', 'https://' + req.headers.host.replace(/:\d+/, ':' + port) + req.url)
+  res.statusCode = 302
+  res.end()
+})
 
 insecureServer.listen(insecurePort, function () {
-    console.log("\nRedirecting all http traffic to https\n");
-});
-
+  console.log('\nRedirecting all http traffic to https\n')
+})
 
 if (IS_PRODUCTION) {
-    options = {
-        key: fs.readFileSync(path.join(certsPath, 'privkey.pem')),
-        cert: fs.readFileSync(path.join(caCertsPath, 'fullchain.pem'))
-    };
+  options = {
+    key: fs.readFileSync(path.join(certsPath, 'privkey.pem')),
+    cert: fs.readFileSync(path.join(caCertsPath, 'fullchain.pem'))
+  }
 
-    server = https.createServer(options);
-    console.log("\nCreated server\n");
-    checkip.getExternalIp().then(function (ip) {
-        var host = ip || 'www.alextoop.com';
-        console.log("\nThe ip is: " + host + "\n");
+  server = https.createServer(options)
+  console.log('\nCreated server\n')
+  checkip.getExternalIp().then(function (ip) {
+    var host = ip || 'www.alextoop.com'
+    console.log('\nThe ip is: ' + host + '\n')
 
-        function listen(app) {
-            server.on('request', app);
-            console.log("\nThe port is: " + port + "\n");
-            server.listen(port, function () {
-                port = server.address().port;
-                console.log('Listening on https://127.0.0.1:' + port);
-                console.log('Listening on https://www.alextoop.com:' + port);
-                if (ip) {
-                    console.log('Listening on https://' + ip + ':' + port);
-                }
-            });
+    function listen (app) {
+      server.on('request', app)
+      console.log('\nThe port is: ' + port + '\n')
+      server.listen(port, function () {
+        port = server.address().port
+        console.log('Listening on https://127.0.0.1:' + port)
+        console.log('Listening on https://www.alextoop.com:' + port)
+        if (ip) {
+          console.log('Listening on https://' + ip + ':' + port)
         }
+      })
+    }
 
-        var publicDir = path.join(__dirname, '..', 'public');
-        var app = require('../app').create(server, host, port, publicDir);
-        listen(app);
-    });
+    var publicDir = path.join(__dirname, '..', 'public')
+    var app = require('../app').create(server, host, port, publicDir)
+    listen(app)
+  })
 } else {
-    var host = checkip.getExternalIp();
-    server = http.createServer(options);
-    var publicDir = path.join(__dirname, '..', 'public');
-    var app = require('../app').create(server, host, port, publicDir);
-    server.on('request', app);
-    server.listen(port);
+  var host = checkip.getExternalIp()
+  server = http.createServer(options)
+  var publicDir = path.join(__dirname, '..', 'public')
+  var app = require('../app').create(server, host, port, publicDir)
+  server.on('request', app)
+  server.listen(port)
 }

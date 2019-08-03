@@ -21,16 +21,15 @@
 //
 // module.exports = app;
 
+'use strict'
 
-'use strict';
-
-var express = require('express');
+var express = require('express')
 
 module.exports.create = function (server, host, port, publicDir) {
-    var app = express();
+  var app = express()
 
-    app.use(express.static(publicDir));
-    // app.use(express.static(path.join(__dirname, '..', 'public')));
+  app.use(express.static(publicDir))
+  // app.use(express.static(path.join(__dirname, '..', 'public')));
 
-    return app;
-};
+  return app
+}

@@ -1,2 +1,2 @@
 # nodejs-remind
-A website to help provide reminders for day-to-day activites.
+A website to help provide reminders for day-to-day activities.
